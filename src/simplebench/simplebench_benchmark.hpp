@@ -22,36 +22,44 @@ class SIMPLEBENCH_API Benchmark {
   };
 
   struct Config {
+    double MinWarmupTime() const { return warmup_time; }
     Config& MinWarmupTime(double value) {
       warmup_time = value;
       return *this;
     }
 
+    TimeUnit WarmupTimeUnit() const { return warmup_time_unit; }
     Config& WarmupTimeUnit(TimeUnit unit) {
       warmup_time_unit = unit;
       return *this;
     }
 
+    bool ShouldWarmup() const { return should_warmup; }
     Config& ShouldWarmup(bool value) {
       should_warmup = value;
       return *this;
     }
 
+    uint32_t Repeats() const { return repeats; }
     Config& Repeats(uint32_t value) {
       repeats = value;
       return *this;
     }
 
+    size_t Iterations() const { return iterations; }
     Config& Iterations(size_t value) {
       iterations = value;
       return *this;
     }
 
+    TimeUnit BenchmarkTimeUnit() const { return benchmark_time_unit; }
     Config& BenchmarkTimeUnit(TimeUnit unit) {
       benchmark_time_unit = unit;
       return *this;
     }
 
+   private:
+    friend class Benchmark;
     // Warmup
     double warmup_time = 500;
     TimeUnit warmup_time_unit = TimeUnit::kNanosecond;
@@ -69,6 +77,7 @@ class SIMPLEBENCH_API Benchmark {
 
   void Run(Reporter* reporter) const;
   const char* GetName() const { return name_; }
+  Config& GetConfig() { return config_; }
 
  private:
   void Warmup() const;
