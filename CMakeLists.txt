@@ -4,7 +4,7 @@ include(cmake/Settings.cmake)
 include(cmake/Utilities.cmake)
 
 project(
-    "project"
+    "simplebench"
     VERSION 1.0.0
     LANGUAGES CXX C
 )
@@ -24,18 +24,4 @@ if(MSVC AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 add_subdirectory(src)
-
-if(BUILD_TESTING)
-    include(CTest)
-    include(FetchContent)
-    enable_testing()
-    
-    FetchContent_Declare(
-        simpletest
-        GIT_REPOSITORY https://github.com/unknown-0x/simple-test.git
-        GIT_TAG        main
-    )
-
-    FetchContent_MakeAvailable(simpletest)
-    add_subdirectory(test)
-endif()
+add_subdirectory(benchmark)

@@ -35,9 +35,6 @@ jobs:
       - name: Build
         run: |
           cmake --build --preset ${{ matrix.compiler }}-${{ matrix.build_type }}
-      - name: Test
-        run: |
-          ctest --preset ${{ matrix.compiler }}-${{ matrix.build_type }} --output-on-failure -V
 
   windows-arm:
     name: ${{ matrix.os }}-${{ matrix.compiler }}-${{ matrix.build_type }}-${{ matrix.build_shared_libs.text }}
@@ -64,8 +61,6 @@ jobs:
                 -DBUILD_SHARED_LIBS=${{ matrix.build_shared_libs.value }}
       - name: Build
         run: cmake --build --preset ${{ matrix.compiler }}-${{ matrix.build_type }}
-      - name: Test
-        run: ctest --preset ${{ matrix.compiler }}-${{ matrix.build_type }} --output-on-failure -V
 
   windows-mingw:
     name: ${{ matrix.os }}-${{ matrix.msystem }}-${{ matrix.build_type }}-${{ matrix.build_shared_libs.text }}
@@ -96,8 +91,6 @@ jobs:
           cmake --preset ninja-${{ matrix.build_type }} -DBUILD_SHARED_LIBS=${{ matrix.build_shared_libs.value }}
       - name: Build
         run: cmake --build --preset ninja-${{ matrix.build_type }}
-      - name: Test
-        run: ctest --preset ninja-${{ matrix.build_type }} --output-on-failure -V
 
   ubuntu:
     name: ${{ matrix.os }}-${{ matrix.compiler }}-${{ matrix.build_type }}-${{ matrix.build_shared_libs.text }}
@@ -137,8 +130,6 @@ jobs:
                 -DBUILD_SHARED_LIBS=${{ matrix.build_shared_libs.value }}
       - name: Build
         run: cmake --build --preset ninja-${{ matrix.build_type }}
-      - name: Test
-        run: ctest --preset ninja-${{ matrix.build_type }} --output-on-failure -V
 
   ubuntu-arm:
     name: ${{ matrix.os }}-${{ matrix.compiler }}-${{ matrix.build_type }}-${{ matrix.build_shared_libs.text }}
@@ -178,8 +169,6 @@ jobs:
                 -DBUILD_SHARED_LIBS=${{ matrix.build_shared_libs.value }}
       - name: Build
         run: cmake --build --preset ninja-${{ matrix.build_type }}
-      - name: Test
-        run: ctest --preset ninja-${{ matrix.build_type }} --output-on-failure -V
 
   macos:
     runs-on: ${{ matrix.os }}
@@ -212,6 +201,3 @@ jobs:
       - name: Build
         run: |
           cmake --build --preset ninja-${{ matrix.build_type }}
-      - name: Test
-        run: |
-          ctest --preset ninja-${{ matrix.build_type }} --output-on-failure -V
