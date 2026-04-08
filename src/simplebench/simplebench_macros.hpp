@@ -23,7 +23,7 @@ SIMPLEBENCH_API Benchmark& RegisterBenchmark(const char* name,
 
 #define BENCHMARK_ARGS(name, secondary_name, ...)       \
   static ::simplebench::Benchmark::Config&              \
-      _BenchmarkConfig_##name##secondary_name## =       \
+      _BenchmarkConfig_##name##secondary_name##_ =      \
           ::simplebench::internal::RegisterBenchmark(   \
               #name "/" #secondary_name,                \
               [] { BenchmarkFunc##name(__VA_ARGS__); }, \
