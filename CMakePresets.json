@@ -5,8 +5,7 @@
     "minor": 15,
     "patch": 0
   },
-  "configurePresets": [
-    {
+  "configurePresets": [{
       "name": "base",
       "hidden": true,
       "binaryDir": "${sourceDir}/output/build/${presetName}",
@@ -15,7 +14,7 @@
         "CMAKE_CXX_STANDARD": "17",
         "WARNINGS_AS_ERRORS": "OFF",
         "BUILD_SHARED_LIBS": "OFF",
-        "BUILD_TESTING": "OFF",
+        "SIMPLEBENCH_BUILD_BENCHMARK": "OFF",
         "ENABLE_CLANG_TIDY": "OFF"
       }
     },
@@ -94,8 +93,7 @@
       "inherits": ["msvc-clang-base", "release"]
     }
   ],
-  "buildPresets": [
-    {
+  "buildPresets": [{
       "name": "ninja-debug",
       "configurePreset": "ninja-debug"
     },
@@ -120,8 +118,7 @@
       "configurePreset": "msvc-clang-release"
     }
   ],
-  "testPresets": [
-    {
+  "testPresets": [{
       "name": "ninja-debug",
       "configurePreset": "ninja-debug"
     },
