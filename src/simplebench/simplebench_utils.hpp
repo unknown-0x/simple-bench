@@ -140,10 +140,10 @@ inline void DoNotOptimize(Tp&& value) {
 #endif
 
 enum class TimeUnit : uint8_t {
-  kNanosecond = 1,
-  kMicrosecond = 2,
-  kMillisecond = 3,
-  kSecond = 4
+  kNanosecond,
+  kMicrosecond,
+  kMillisecond,
+  kSecond
 };
 
 SIMPLEBENCH_API const char* TimeUnitToString(const TimeUnit unit);
@@ -167,6 +167,11 @@ class TextStream {
 
   TextStream& operator<<(Precision value) {
     precision = value;
+    return *this;
+  }
+
+  TextStream& operator<<(TimeUnit unit) {
+    text.append(TimeUnitToString(unit));
     return *this;
   }
 

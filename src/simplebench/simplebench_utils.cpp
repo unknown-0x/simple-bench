@@ -10,17 +10,8 @@ void UseCharPointer(char const volatile* const v) {
 }
 }  // namespace internal
 
+static constexpr const char* kTimeUnitStrings[] = {"ns", "us", "ms", "s"};
 const char* TimeUnitToString(const TimeUnit unit) {
-  switch (unit) {
-    case TimeUnit::kNanosecond:
-      return "ns";
-    case TimeUnit::kMicrosecond:
-      return "us";
-    case TimeUnit::kMillisecond:
-      return "ms";
-    case TimeUnit::kSecond:
-      return "s";
-  }
-  assert(false);
+  return kTimeUnitStrings[static_cast<size_t>(unit)];
 }
 }  // namespace simplebench

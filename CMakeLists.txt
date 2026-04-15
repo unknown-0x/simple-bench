@@ -24,4 +24,7 @@ if(MSVC AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 add_subdirectory(src)
-add_subdirectory(benchmark)
+
+if(SIMPLEBENCH_BUILD_BENCHMARK)
+    add_subdirectory(benchmark)
+endif()

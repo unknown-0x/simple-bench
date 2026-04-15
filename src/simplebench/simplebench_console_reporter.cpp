@@ -36,14 +36,14 @@ void ConsoleReporter::OnBenchmarkEnd(const Benchmark&) {
 }
 void ConsoleReporter::OnReportStatistics(const Benchmark&,
                                          const Benchmark::Stats& stats) {
-  const char* const time_unit_str = TimeUnitToString(stats.time_unit);
   stream << "Total iterations: " << stats.total_iterations << '\n';
-  stream << "Total time: " << stats.total_time << ' ' << time_unit_str << '\n';
-  stream << "Ops/" << time_unit_str << ": " << stats.ops_per_unit << '\n';
-  stream << time_unit_str << "/op: " << stats.time_per_op << '\n';
-  stream << "Median: " << stats.median << ' ' << time_unit_str << '\n';
-  stream << "Mean: " << stats.mean << ' ' << time_unit_str << '\n';
-  stream << "Stddev: " << stats.std_dev << ' ' << time_unit_str << '\n';
+  stream << "Total time: " << stats.total_time << ' ' << stats.time_unit
+         << '\n';
+  stream << "Ops/" << stats.time_unit << ": " << stats.ops_per_unit << '\n';
+  stream << stats.time_unit << "/op: " << stats.time_per_op << '\n';
+  stream << "Median: " << stats.median << ' ' << stats.time_unit << '\n';
+  stream << "Mean: " << stats.mean << ' ' << stats.time_unit << '\n';
+  stream << "Stddev: " << stats.std_dev << ' ' << stats.time_unit << '\n';
   stream << "RSD: " << stats.rsd << '%' << '\n';
 }
 void ConsoleReporter::OnExit() {
