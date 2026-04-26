@@ -14,7 +14,7 @@
         "CMAKE_CXX_STANDARD": "17",
         "WARNINGS_AS_ERRORS": "OFF",
         "BUILD_SHARED_LIBS": "OFF",
-        "SIMPLEBENCH_BUILD_BENCHMARK": "OFF",
+        "SIMPLEBENCH_BUILD_BENCHMARK": "ON",
         "ENABLE_CLANG_TIDY": "OFF"
       }
     },
