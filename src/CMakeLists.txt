@@ -19,3 +19,11 @@ target_enable_clang_format(simplebench)
 target_enable_clang_tidy(simplebench)
 target_compiler_warnings(simplebench)
 target_export_api(simplebench SIMPLEBENCH_API)
+
+
+if(BUILD_SHARED_LIBS AND MSVC)
+  set_target_properties(simplebench
+    PROPERTIES
+      WINDOWS_EXPORT_ALL_SYMBOLS ON
+  )
+endif()

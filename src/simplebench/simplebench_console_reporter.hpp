@@ -4,7 +4,7 @@
 #include "simplebench_reporter.hpp"
 
 namespace simplebench {
-class SIMPLEBENCH_API ConsoleReporter : public Reporter {
+class ConsoleReporter : public Reporter {
  public:
   ConsoleReporter();
   ~ConsoleReporter() = default;

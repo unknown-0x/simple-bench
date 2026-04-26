@@ -1,23 +1,22 @@
-add_executable(
-    basic_example
-    basic_example.cpp
-)
-target_link_libraries(basic_example PRIVATE simplebench::simplebench)
-target_enable_clang_format(basic_example)
-target_enable_clang_tidy(basic_example)
+function(add_benchmark name)
+    add_executable(
+        ${name}
+        ${name}.cpp
+    )
+    target_link_libraries(${name} PRIVATE simplebench::simplebench)
+    target_enable_clang_format(${name})
+    target_enable_clang_tidy(${name})
+    target_import_api(${name} simplebench)
 
-add_executable(
-    benchmark_lambda
-    benchmark_lambda.cpp
-)
-target_link_libraries(benchmark_lambda PRIVATE simplebench::simplebench)
-target_enable_clang_format(benchmark_lambda)
-target_enable_clang_tidy(benchmark_lambda)
+    
+if(BUILD_SHARED_LIBS AND MSVC)
+  set_target_properties(${name}
+    PROPERTIES
+      WINDOWS_EXPORT_ALL_SYMBOLS ON
+  )
+endif()
+endfunction()
 
-add_executable(
-    benchmark_with_cfg
-    benchmark_with_cfg.cpp
-)
-target_link_libraries(benchmark_with_cfg PRIVATE simplebench::simplebench)
-target_enable_clang_format(benchmark_with_cfg)
-target_enable_clang_tidy(benchmark_with_cfg)
+add_benchmark(basic_example)
+add_benchmark(benchmark_lambda)
+add_benchmark(benchmark_with_cfg)

@@ -70,7 +70,7 @@ struct BenchmarkConfig {
 };
 
 class Reporter;
-class SIMPLEBENCH_API Benchmark {
+class Benchmark {
  public:
   Benchmark(const char* name) : config_(), name_(name) {}
   virtual ~Benchmark() = default;
