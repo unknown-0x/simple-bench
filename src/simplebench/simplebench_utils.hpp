@@ -2,6 +2,7 @@
 #define SIMPLEBENCH_SIMPLEBENCH_UTILS_HPP_
 
 #include <atomic>
+#include <chrono>
 #include <cmath>
 #include <cstdint>
 #include <ostream>
@@ -175,6 +176,11 @@ class TextStream {
     return *this;
   }
 
+  TextStream& operator<<(const std::string& str) {
+    text.append(str);
+    return *this;
+  }
+
   TextStream& operator<<(const char* value) {
     text.append(value);
     return *this;
@@ -279,6 +285,17 @@ class TextStream {
     }
   }
 };
+
+using namespace std::chrono;
+using Clock = steady_clock;
+
+SIMPLEBENCH_API time_point<Clock> AddDuration(time_point<Clock> tp,
+                                              TimeUnit unit,
+                                              double value);
+
+SIMPLEBENCH_API double ToDurationAsDouble(TimeUnit unit,
+                                          time_point<Clock> start,
+                                          time_point<Clock> end);
 }  // namespace simplebench
 
 inline std::ostream& operator<<(std::ostream& os,
