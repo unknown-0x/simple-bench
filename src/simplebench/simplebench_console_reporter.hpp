@@ -13,7 +13,7 @@ class SIMPLEBENCH_API ConsoleReporter : public Reporter {
   virtual void OnBenchmarkStart(const Benchmark&) override;
   virtual void OnBenchmarkEnd(const Benchmark&) override;
   virtual void OnReportStatistics(const Benchmark&,
-                                  const Benchmark::Stats&) override;
+                                  const BenchmarkStats&) override;
   virtual void OnExit() override;
 
  private:

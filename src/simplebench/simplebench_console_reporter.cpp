@@ -1,5 +1,4 @@
 #include "simplebench_console_reporter.hpp"
-#include "simplebench_runner.hpp"
 
 #include <iostream>
 
@@ -16,7 +15,7 @@ constexpr const char* kSecondarySeparator =
     "------";
 
 void ConsoleReporter::OnStart() {
-  const auto benchmark_count = BenchmarkRunner::Get().GetBenchmarks().size();
+  const auto benchmark_count = GetBenchmarkCount();
   std::cout << kPrimarySeparator << '\n';
   if (benchmark_count == 0) {
     std::cout << "No benchmarks found to run." << std::endl;
@@ -27,15 +26,17 @@ void ConsoleReporter::OnStart() {
 }
 
 void ConsoleReporter::OnBenchmarkStart(const Benchmark& benchmark) {
-  stream << "Name: " << benchmark.GetName() << '\n';
+  stream << "Name: " << benchmark.Name() << '\n';
 }
+
 void ConsoleReporter::OnBenchmarkEnd(const Benchmark&) {
   stream << kSecondarySeparator;
   std::cout << stream << '\n';
   stream.Clear();
 }
+
 void ConsoleReporter::OnReportStatistics(const Benchmark&,
-                                         const Benchmark::Stats& stats) {
+                                         const BenchmarkStats& stats) {
   stream << "Total iterations: " << stats.total_iterations << '\n';
   stream << "Total time: " << stats.total_time << ' ' << stats.time_unit
          << '\n';
@@ -46,6 +47,7 @@ void ConsoleReporter::OnReportStatistics(const Benchmark&,
   stream << "Stddev: " << stats.std_dev << ' ' << stats.time_unit << '\n';
   stream << "RSD: " << stats.rsd << '%' << '\n';
 }
+
 void ConsoleReporter::OnExit() {
   std::cout << kPrimarySeparator << '\n';
 }
